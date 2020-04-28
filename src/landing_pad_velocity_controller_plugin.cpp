@@ -30,8 +30,6 @@ class LandingPadVelocityControllerPlugin : public ModelPlugin
 			std::cerr << "LandingPadVelocityControllerPlugin is attached to model [" << _model->GetName() << "]" << std::endl;
 
 			this->model = _model;
-			this->link = _model->GetLink("link");
-			std::cerr << "Using link " << this->link->GetName() << std::endl;
 			
 			if( ! ros::isInitialized() )
 			{
@@ -78,23 +76,6 @@ class LandingPadVelocityControllerPlugin : public ModelPlugin
 //			std::cerr << "In velocity callback" << std::endl;
 //			std::cerr << "< " << msg->linear.x << ", " << msg->linear.y << ", " << msg->linear.z << ">" << std::endl;
 			this->model->SetLinearVel({msg->linear.x, msg->linear.y, msg->linear.z});
-/*
-			ignition::math::Vector3<double>    position = ignition::math::Vector3<double>( _msg->pose.position.x, _msg->pose.position.y, _msg->pose.position.z );
-			//										(w, x, y, z) NOT (x, y, z, w)
-//			ignition::math::Quaternion<double> rotation = ignition::math::Quaternion<double>(1, 0, 0, 0);
-			ignition::math::Quaternion<double> rotation = ignition::math::Quaternion<double>(_msg->pose.orientation.w, _msg->pose.orientation.x, _msg->pose.orientation.y, _msg->pose.orientation.z);
-			ignition::math::Pose3<double>          pose = ignition::math::Pose3<double>( position, rotation );
-
-			try
-			{
-				std::cerr << "( " << pose.Pos().X() << ", " << pose.Pos().Y() << ", " << pose.Pos().Z() << ")" << std::endl;
-				this->model->SetWorldPose(pose);
-			}
-			catch( ... )
-			{
-				std::cerr << "Caught an exception." << std::endl;
-			}
-*/
 		}
 
 		void queue_thread()
