@@ -76,6 +76,7 @@ class LandingPadVelocityControllerPlugin : public ModelPlugin
 //			std::cerr << "In velocity callback" << std::endl;
 //			std::cerr << "< " << msg->linear.x << ", " << msg->linear.y << ", " << msg->linear.z << ">" << std::endl;
 			this->model->SetLinearVel({msg->linear.x, msg->linear.y, msg->linear.z});
+			this->model->SetAngularVel({0, 0, 0});
 		}
 
 		void queue_thread()
